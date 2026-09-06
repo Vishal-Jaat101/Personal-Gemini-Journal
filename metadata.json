@@ -1,0 +1,8 @@
+{
+  "name": "Personal Gemini Journal",
+  "description": "A private, AI-powered reflective journaling and habit tracking web app with Firebase Authentication, multi-turn conversational brainstorming, 7-day streaks, and automated Firestore persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

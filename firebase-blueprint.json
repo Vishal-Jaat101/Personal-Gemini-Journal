@@ -1,0 +1,87 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Information about the authenticated user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "JournalEntry": {
+      "title": "JournalEntry",
+      "description": "A saved journal session with AI-generated summary, mood, insights, and chat transcript.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "keyInsights": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mood": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "actionItems": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "messageCount": { "type": "number" },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "role": { "type": "string" },
+              "content": { "type": "string" },
+              "timestamp": { "type": "number" }
+            }
+          }
+        },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "summary", "createdAt"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "A daily tracked habit with 7-day completion records and streak metrics.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "frequency": { "type": "string" },
+        "source": { "type": "string" },
+        "completedDates": {
+          "type": "object",
+          "description": "Map of YYYY-MM-DD to boolean true for completed days"
+        },
+        "streak": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "name", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/journals/{entryId}": {
+      "schema": "JournalEntry",
+      "description": "User journal entries scoped strictly to the authenticated user UID."
+    },
+    "/users/{userId}/habits/{habitId}": {
+      "schema": "Habit",
+      "description": "User daily habits scoped strictly to the authenticated user UID."
+    }
+  }
+}
