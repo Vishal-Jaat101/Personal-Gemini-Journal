@@ -204,3 +204,5 @@ npm run build
 # 4. Start production bundle
 npm start
 ```
+#   P e r s o n a l - G e m i n i - J o u r n a l  
+ 
